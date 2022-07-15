@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head> 
+<body>
+<script>
+  let p =   new Promise((resolve, reject) =>{
+    setTimeout(() => {
+      resolve("OK")
+    }, 2);
+  });
+  p.then(value=>{
+    console.log(value)
+    throw "dfaf"
+    
+  }).then(value=>{
+    console.log(1111)
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+package stack
+
+import "fmt"
+
+//https://leetcode.cn/leetbook/read/top-interview-questions/xa8q4g/
+func calculate(s string) (ans int) {
+	stack := []int{}
+	preSign := '+'
+	num := 0
+	for i, ch := range s {
+		isDigit := '0' <= ch && ch <= '9'
+		if isDigit {
+			num = num*10 + int(ch-'0')
+		}
+		if !isDigit && ch != ' ' || i == len(s)-1 {
+			switch preSign {
+			case '+':
+				stack = append(stack, num)
+			case '-':
+				stack = append(stack, -num)
+			case '*':
+				stack[len(stack)-1] *= num
+			default:
+				stack[len(stack)-1] /= num
+			}
+			preSign = ch
+			num = 0
+		}
+	}
+	for _, v := range stack {
+		ans += v
+	}
+	return
+
+}
+
+func TestCacl() {
+	s := "3+2*2"
+	fmt.Println(calculate(s))
+
+}
